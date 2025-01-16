@@ -56,4 +56,6 @@ This project is developed with Java, Maven, Spring Boot, and MySQL in the backen
     npm start
     ```
 
-
+### Ports
+The frontend is running on `http://localhost:4200`
+and the backend on `http://localhost:8080`
