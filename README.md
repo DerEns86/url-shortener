@@ -19,12 +19,12 @@ This project is developed with Java, Maven, Spring Boot, and Postgres in the bac
 
 2.Database Setup
  - Set the following environment variables in Docker:
-        ```properties
-        DB_URL=jdbc:postgresql://localhost:5432/url_shortener
-        DB_USERNAME=your_username
-        DB_PASSWORD=your_password
-        ```
-   - Run the `docker-compose.yml`
+    ```properties
+    DB_URL=jdbc:postgresql://localhost:5432/url_shortener
+    DB_USERNAME=your_username
+    DB_PASSWORD=your_password
+    ```
+- Run the `docker-compose.yml`
 
 3. Edit the configuration file:
     - Edit the `application.properties` file in the `src/main/resources` directory.
