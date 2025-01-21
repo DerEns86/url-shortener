@@ -13,11 +13,17 @@
         "vmware.vscode-spring-boot",
         "mtxr.sqltools",
         "mtxr.sqltools-driver-pg"
-      ]
+      ],
+      "settings": {
+        "workbench.colorTheme": "September Steel",
+        "workbench.colorCustomizations": {
+          "titleBar.activeBackground": "#ddff76",
+          "titleBar.activeForeground": "#292929"
+        }
+      }
     }
   },
   "forwardPorts": [8080],
-  "postCreateCommand": "./mvnw clean install -DskipTests",
   "remoteUser": "root",
   "shutdownAction": "none"
 }

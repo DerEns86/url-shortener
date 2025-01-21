@@ -5,6 +5,8 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./backend:/workspace/backend
+    entrypoint: /bin/bash
+    command: -i -c "while :; do sleep 10; done"
     ports:
       - "8080:8080"
     environment:
@@ -21,6 +23,8 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./frontend:/workspace/frontend
+    entrypoint: /bin/bash
+    command: -i -c "while :; do sleep 10; done"
     ports:
       - "4200:4200"
     networks:
