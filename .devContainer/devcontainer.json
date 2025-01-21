@@ -1,0 +1,21 @@
+{
+  "name": "Fullstack DevContainer",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "frontend",
+  "workspaceFolder": "/workspace",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "angular.ng-template",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-pg",
+        "perragnaredin.september-steel"
+      ]
+    }
+  },
+  "remoteUser": "root",
+  "features": {
+    "docker-in-docker": "latest"
+  }
+}
