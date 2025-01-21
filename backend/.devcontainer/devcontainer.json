@@ -1,6 +1,6 @@
 {
   "name": "Spring Boot Backend Development",
-  "dockerComposeFile": ["../../docker-compose.yml"],
+  "dockerComposeFile": ["../../docker-compose.dev.yml"],
   "service": "backend",
   "workspaceFolder": "/workspace/backend",
   "customizations": {

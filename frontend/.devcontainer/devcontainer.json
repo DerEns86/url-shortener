@@ -1,6 +1,6 @@
 {
   "name": "Angular Frontend Development",
-  "dockerComposeFile": ["../../docker-compose.yml"],
+  "dockerComposeFile": ["../../docker-compose.dev.yml"],
   "service": "frontend",
   "workspaceFolder": "/workspace/frontend",
   "customizations": {
