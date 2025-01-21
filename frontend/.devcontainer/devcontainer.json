@@ -1,0 +1,23 @@
+{
+  "name": "Angular Frontend Development",
+  "dockerComposeFile": ["../../docker-compose.yml"],
+  "service": "frontend",
+  "workspaceFolder": "/workspace/frontend",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "angular.ng-template",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-pg",
+        "perragnaredin.september-steel"
+      ]
+    }
+  },
+  "forwardPorts": [4200],
+  "postCreateCommand": "npm install",
+  "remoteUser": "node",
+  "shutdownAction": "none"
+}
