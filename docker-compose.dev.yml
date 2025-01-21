@@ -9,11 +9,8 @@ services:
     command: -i -c "while :; do sleep 10; done"
     ports:
       - "8080:8080"
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: url_shortener
-      SPRING_PROFILES_ACTIVE: dev
+    env_file:
+      - .env
     networks:
       - dev-network
 
@@ -27,25 +24,25 @@ services:
     command: -i -c "while :; do sleep 10; done"
     ports:
       - "4200:4200"
+    env_file:
+      - .env
     networks:
       - dev-network
 
   postgres:
     image: postgres:15-alpine
-    # env_file:
-    #   - .env
-    environment:
-      # POSTGRES_USER: ${DATASOURCE_USER}
-      # POSTGRES_PASSWORD: ${DATASOURCE_PASSWORD}
-      # POSTGRES_DB: ${DATASOURCE_DB}
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: url_shortener
+    env_file:
+      - .env
     ports:
       - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     networks:
       - dev-network
 
 networks:
   dev-network:
     driver: bridge
+
+volumes:
+  postgres_data:
