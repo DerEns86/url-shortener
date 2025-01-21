@@ -1,7 +1,7 @@
 services:
   backend:
     build:
-      context: ./backend
+      context: ./backend/.devcontainer
       dockerfile: Dockerfile
     volumes:
       - ./backend:/workspace/backend
@@ -17,7 +17,7 @@ services:
 
   frontend:
     build:
-      context: ./frontend
+      context: ./frontend/.devcontainer
       dockerfile: Dockerfile
     volumes:
       - ./frontend:/workspace/frontend
