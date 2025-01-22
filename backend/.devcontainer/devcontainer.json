@@ -1,0 +1,29 @@
+{
+  "name": "Spring Boot Backend Development",
+  "dockerComposeFile": ["../../docker-compose.dev.yml"],
+  "service": "backend",
+  "workspaceFolder": "/workspace/backend",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-spring-boot-dashboard",
+        "vscjava.vscode-spring-initializr",
+        "redhat.vscode-xml",
+        "vmware.vscode-spring-boot",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-pg"
+      ],
+      "settings": {
+        "workbench.colorTheme": "September Steel",
+        "workbench.colorCustomizations": {
+          "titleBar.activeBackground": "#ddff76",
+          "titleBar.activeForeground": "#292929"
+        }
+      }
+    }
+  },
+  "forwardPorts": [8080],
+  "remoteUser": "root",
+  "shutdownAction": "none"
+}

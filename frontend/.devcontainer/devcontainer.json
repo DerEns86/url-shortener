@@ -1,0 +1,42 @@
+{
+  "name": "Angular Frontend Development",
+  "dockerComposeFile": ["../../docker-compose.dev.yml"],
+  "service": "frontend",
+  "workspaceFolder": "/workspace/frontend",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "angular.ng-template",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-pg",
+        "perragnaredin.september-steel"
+      ],
+      "settings": {
+        "workbench.colorTheme": "September Steel",
+        "workbench.colorCustomizations": {
+          "titleBar.activeBackground": "#873a6a",
+          "titleBar.activeForeground": "#e7e7e7"
+        },
+        "sqltools.connections": [
+          {
+            "name": "Development DB",
+            "driver": "PostgreSQL",
+            "server": "${containerEnv:POSTGRES_HOST}",
+            "port": 5432,
+            "database": "${containerEnv:POSTGRES_DB}",
+            "username": "${containerEnv:POSTGRES_USER}",
+            "password": "${containerEnv:POSTGRES_PASSWORD}"
+          }
+        ]
+      }
+    }
+  },
+  "forwardPorts": [4200, 5432],
+  "runServices": ["postgres", "frontend"],
+  "postCreateCommand": "npm install",
+  "remoteUser": "node",
+  "shutdownAction": "stopCompose"
+}
