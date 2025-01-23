@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -24,9 +24,9 @@ public class Url {
     private String host;
     private String shortUrlPath;
     @ElementCollection
-    private List<Timestamp> clickedAt;
-    private Timestamp createdAt;
+    private List<LocalDate> clickedAt;
+    private LocalDate createdAt;
     private int expirationTime;
     private boolean active;
-    private Timestamp deletedAt;
+    private LocalDate deletedAt;
 }
