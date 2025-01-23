@@ -1,4 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -8,8 +9,11 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
 })
-export class MainComponent {
+export class MainComponent implements OnInit {
   private fb: FormBuilder = inject(FormBuilder);
+
+  private http: HttpClient = inject(HttpClient);
+
   urls: { sourceUrl: string | null; targetUrl: string | null }[] = [];
 
   submitForm = this.fb.group({
@@ -17,10 +21,16 @@ export class MainComponent {
     targetUrl: [''],
   });
 
+  ngOnInit(): void {
+    this.http.get<any>('http://localhost:8080/api/url').subscribe({
+      next: (response) => console.log(response),
+    });
+  }
+
   onSubmit() {
-    const hoster = 'https://ens.dev';
+    const HOSTER = 'https://ens.dev';
     this.submitForm.patchValue({
-      targetUrl: hoster + '/' + this.generateUuid(),
+      targetUrl: HOSTER + '/' + this.generateUuid(),
     });
     console.log(this.submitForm.value);
     this.urls.push({
