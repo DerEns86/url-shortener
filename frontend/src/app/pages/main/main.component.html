@@ -9,15 +9,22 @@
           Your URL
         </label>
         <input
-          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="sourceUrl"
           type="text"
           placeholder="Long Url"
           formControlName="sourceUrl"
         />
+        @if (submitForm.invalid && submitForm.touched) {
+        <p class="text-red-500 text-xs italic">
+          Url is invalid. It has to start with https:// or http://
+        </p>
+        }
       </div>
-      <div class="flex items-end justify-between px-3">
-        <div class="w-full md:w-2/3">
+      <div
+        class="flex flex-col items-end justify-between sm:flex-row px-3 mt-3"
+      >
+        <div class="w-full sm:w-2/3">
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="targetUrl"
@@ -33,9 +40,9 @@
             readonly
           />
         </div>
-        <div class="w-full md:w-1/6 mr-6">
+        <div class="w-full sm:w-1/6 mt-3 ml-6 sm:mr-6">
           <button
-            class="bg-white hover:bg-gray-900 hover:text-white transition duration-700 ease-in-out text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow max-h-10"
+            class="bg-white hover:bg-gray-900 hover:text-white transition duration-700 ease-in-out text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow max-h-10 mb-[3px]"
           >
             Generate
           </button>
@@ -45,15 +52,25 @@
   </div>
 </section>
 
-<!-- Just for testing -->
+<!-- URL List -->
 
-<div class="flex justify-center items-center mt-10 flex-col">
-  <h3>Your Urls</h3>
-  <div>
-    <ul>
-      <!-- @for (url of urls; track url){
-      <li>{{ url.sourceUrl }} - {{ url.targetUrl }}</li>
-      } -->
-    </ul>
+<div class="flex justify-center items-center mt-10 flex-col mb-10">
+  <h3 class="text-lg font-bold mb-4">Your Urls</h3>
+  <div class="flex flex-col space-y-4 w-full max-w-md">
+    @for (url of urls; track url) {
+    <div class="bg-white shadow-md rounded-lg p-4 border border-gray-200">
+      <p class="text-slate-500 mb-2 text-xs">Original URL:</p>
+      <p class="text-gray-800 truncate">{{ url.originalUrl }}</p>
+      <hr class="my-3" />
+      <p class="text-slate-500 mb-2 text-xs">Short URL:</p>
+      <a
+        href="{{ url.shortUrl }}"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-blue-500 underline"
+        >{{ url.shortUrl }}</a
+      >
+    </div>
+    }
   </div>
 </div>
