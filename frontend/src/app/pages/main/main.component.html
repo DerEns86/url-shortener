@@ -51,9 +51,9 @@
   <h3>Your Urls</h3>
   <div>
     <ul>
-      <!-- @for (url of urls; track url){
-      <li>{{ url.sourceUrl }} - {{ url.targetUrl }}</li>
-      } -->
+      @for (url of urls; track url){
+      <li>{{ url.originalUrl }} - {{ url.shortUrl }}</li>
+      }
     </ul>
   </div>
 </div>

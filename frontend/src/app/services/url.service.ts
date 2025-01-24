@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { UrlInterface } from '../interfaces/url.interface';
 
 @Injectable({
@@ -8,26 +8,30 @@ import { UrlInterface } from '../interfaces/url.interface';
 export class UrlService {
   private http: HttpClient = inject(HttpClient);
 
-  public urlSignal = signal<UrlInterface[]>([]);
+  private urlSignal = signal<UrlInterface[]>([]);
+
+  public shortUrlSignal = signal<string>('');
+
+  readonly urls = this.urlSignal.asReadonly();
 
   private readonly BASE_URL = 'http://localhost:8080';
 
   fetchUrl() {
-    this.http.get<UrlInterface>(this.BASE_URL + '/api/url').subscribe({
-      next: (response) => {
-        this.urlSignal.set([...this.urlSignal(), response]);
+    this.http.get<UrlInterface[]>(this.BASE_URL + '/api/url').subscribe({
+      next: (response: UrlInterface[]) => {
+        this.urlSignal.set(response);
         console.log('urlSignal', this.urlSignal());
       },
     });
   }
 
-  saveUrl(originalUrl: string, hoster: string) {
+  saveUrl(originalUrl: string, host: string) {
     this.http
-      .post<UrlInterface>(this.BASE_URL + '/api/url', { originalUrl, hoster })
+      .post<UrlInterface>(this.BASE_URL + '/api/url', { originalUrl, host })
       .subscribe({
         next: (response: UrlInterface) => {
-          // this.urlSignal.set([...this.urlSignal(), response]);
-          console.log('urlSignal', this.urlSignal());
+          this.urlSignal.update((urls) => [...urls, response]);
+          this.shortUrlSignal.set(response.shortUrl);
         },
       });
   }

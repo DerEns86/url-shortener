@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { UrlInterface } from '../../interfaces/url.interface';
 import { UrlService } from '../../services/url.service';
@@ -14,11 +14,9 @@ import { UrlService } from '../../services/url.service';
 export class MainComponent implements OnInit {
   private fb: FormBuilder = inject(FormBuilder);
 
-  private urlService: UrlService = inject(UrlService);
-
+  public urlService: UrlService = inject(UrlService);
+  public urls: UrlInterface[] = [];
   private HOSTER: string = 'https://ens.dev';
-
-  // urls: { sourceUrl: string | null; targetUrl: string | null }[] = [];
 
   submitForm = this.fb.group({
     sourceUrl: [''],
@@ -27,15 +25,12 @@ export class MainComponent implements OnInit {
 
   constructor() {
     this.urlService.fetchUrl();
+    effect(() => {
+      this.urls = this.urlService.urls();
+    });
   }
 
-  ngOnInit(): void {
-    // this.http.get<UrlInterface>('http://localhost:8080/api/url').subscribe({
-    //   next: (response) => console.log(response),
-    // });
-    // this.urlService.fetchUrl();
-    console.log('urlSignal', this.urlService.urlSignal());
-  }
+  ngOnInit(): void {}
 
   onSubmit() {
     if (
@@ -43,10 +38,10 @@ export class MainComponent implements OnInit {
       this.submitForm.value.sourceUrl !== undefined
     ) {
       this.urlService.saveUrl(this.submitForm.value.sourceUrl, this.HOSTER);
+      this.submitForm.setValue({
+        sourceUrl: '',
+        targetUrl: this.urlService.shortUrlSignal(),
+      });
     }
-  }
-
-  generateUuid() {
-    return Date.now().toString(36);
   }
 }
