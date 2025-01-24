@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, effect, inject, OnInit } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UrlInterface } from '../../interfaces/url.interface';
 import { UrlService } from '../../services/url.service';
 
@@ -19,7 +18,13 @@ export class MainComponent implements OnInit {
   private HOSTER: string = 'https://ens.dev';
 
   submitForm = this.fb.group({
-    sourceUrl: [''],
+    sourceUrl: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern('https?://.*') || Validators.pattern('http?://.*'),
+      ],
+    ],
     targetUrl: [''],
   });
 
