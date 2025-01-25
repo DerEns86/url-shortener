@@ -32,6 +32,7 @@ export class UrlService {
         next: (response: UrlInterface) => {
           this.urlSignal.update((urls) => [...urls, response]);
           this.shortUrlSignal.set(response.shortUrl);
+          // console.log('shortUrlSignal', this.shortUrlSignal());
         },
       });
   }

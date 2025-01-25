@@ -33,6 +33,11 @@ export class MainComponent implements OnInit {
     effect(() => {
       this.urls = this.urlService.urls();
     });
+    effect(() => {
+      this.submitForm.patchValue({
+        targetUrl: this.urlService.shortUrlSignal(),
+      });
+    });
   }
 
   ngOnInit(): void {}
@@ -43,10 +48,13 @@ export class MainComponent implements OnInit {
       this.submitForm.value.sourceUrl !== undefined
     ) {
       this.urlService.saveUrl(this.submitForm.value.sourceUrl, this.HOSTER);
+
       this.submitForm.setValue({
         sourceUrl: '',
         targetUrl: this.urlService.shortUrlSignal(),
       });
+      this.submitForm.markAsPristine();
+      this.submitForm.markAsUntouched();
     }
   }
 }
