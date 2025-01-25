@@ -13,6 +13,8 @@ import { UrlService } from '../../services/url.service';
 export class MainComponent implements OnInit {
   private fb: FormBuilder = inject(FormBuilder);
 
+  public showToast: boolean = false;
+
   public urlService: UrlService = inject(UrlService);
   public urls: UrlInterface[] = [];
   private HOSTER: string = 'https://ens.dev';
@@ -55,6 +57,15 @@ export class MainComponent implements OnInit {
       });
       this.submitForm.markAsPristine();
       this.submitForm.markAsUntouched();
+
+      this.showToast = true;
+      setTimeout(() => {
+        this.showToast = false;
+      }, 3000);
     }
+  }
+
+  closeToast() {
+    this.showToast = false;
   }
 }
