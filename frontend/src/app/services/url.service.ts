@@ -35,4 +35,10 @@ export class UrlService {
         },
       });
   }
+
+  redirectToUrl(shortUrlPath: string) {
+    return this.http.get(this.BASE_URL + '/api/url/' + shortUrlPath, {
+      responseType: 'text',
+    });
+  }
 }

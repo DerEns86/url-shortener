@@ -101,9 +101,8 @@
       <hr class="my-3" />
       <p class="text-slate-500 mb-2 text-xs">Short URL:</p>
       <a
-        href="{{ url.shortUrl }}"
+        [routerLink]="['/redirect', url.shortUrlPath]"
         target="_blank"
-        rel="noopener noreferrer"
         class="text-blue-500 underline"
         >{{ url.shortUrl }}</a
       >

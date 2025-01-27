@@ -2,11 +2,12 @@ import { Component, effect, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UrlInterface } from '../../interfaces/url.interface';
 import { UrlService } from '../../services/url.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
 })
@@ -68,5 +69,13 @@ export class MainComponent implements OnInit {
 
   closeToast() {
     this.showToast = false;
+  }
+
+  redirect(shortUrlPath: string) {
+    this.urlService.redirectToUrl(shortUrlPath).subscribe({
+      next: (url: string) => {
+        window.open(url, '_blank');
+      },
+    });
   }
 }
