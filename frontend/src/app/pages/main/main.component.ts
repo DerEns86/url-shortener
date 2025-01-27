@@ -17,7 +17,8 @@ export class MainComponent implements OnInit {
 
   public urlService: UrlService = inject(UrlService);
   public urls: UrlInterface[] = [];
-  private HOSTER: string = 'https://ens.dev';
+  // private HOSTER: string = 'https://ens.dev';
+  private HOSTER: string = 'https://localhost:4200';
 
   submitForm = this.fb.group({
     sourceUrl: [
