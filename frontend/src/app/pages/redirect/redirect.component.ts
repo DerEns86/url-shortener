@@ -13,6 +13,9 @@ export class RedirectComponent implements OnInit {
   activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   urlService: UrlService = inject(UrlService);
 
+  errorMessage: string | null = null;
+  isLoading: boolean = true;
+
   ngOnInit(): void {
     const shortUrlPath =
       this.activatedRoute.snapshot.paramMap.get('shortUrlPath');
@@ -20,6 +23,10 @@ export class RedirectComponent implements OnInit {
       this.urlService.redirectToUrl(shortUrlPath).subscribe({
         next: (url: string) => {
           window.location.href = url;
+        },
+        error: () => {
+          this.isLoading = false;
+          this.errorMessage = 'Shortend Url not found';
         },
       });
     }
