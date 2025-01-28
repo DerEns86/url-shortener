@@ -32,4 +32,9 @@ public class UrlService {
         return UUID.randomUUID().toString().substring(0, 6);
     }
 
+    public String getOriginalUrl(String shortUrlPath){
+        Url url = urlRepository.findByShortUrlPath(shortUrlPath);
+        return url.getOriginalUrl();
+    }
+
 }
