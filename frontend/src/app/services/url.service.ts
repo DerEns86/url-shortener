@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { UrlInterface } from '../interfaces/url.interface';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,7 @@ export class UrlService {
 
   readonly urls = this.urlSignal.asReadonly();
 
-  private readonly BASE_URL = 'http://localhost:8080';
+  private readonly BASE_URL = environment.baseUrl;
 
   fetchUrl() {
     this.http.get<UrlInterface[]>(this.BASE_URL + '/api/url').subscribe({
