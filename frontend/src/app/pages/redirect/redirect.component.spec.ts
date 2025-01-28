@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
 
 import { RedirectComponent } from './redirect.component';
 
@@ -8,9 +11,9 @@ describe('RedirectComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RedirectComponent]
-    })
-    .compileComponents();
+      providers: [provideHttpClient(), provideHttpClientTesting()],
+      imports: [RedirectComponent, RouterTestingModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(RedirectComponent);
     component = fixture.componentInstance;
