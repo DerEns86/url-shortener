@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UrlInterface } from '../../interfaces/url.interface';
 import { UrlService } from '../../services/url.service';
 import { RouterLink } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-main',
@@ -19,7 +20,7 @@ export class MainComponent implements OnInit {
   public urlService: UrlService = inject(UrlService);
   public urls: UrlInterface[] = [];
   // private HOSTER: string = 'https://ens.dev';
-  private HOSTER: string = 'https://localhost:4200';
+  private HOSTER: string = environment.BASE_URL;
 
   submitForm = this.fb.group({
     sourceUrl: [
