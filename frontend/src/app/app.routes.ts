@@ -8,7 +8,7 @@ export const routes: Routes = [
   { path: 'redirect/:shortUrlPath', component: RedirectComponent },
   {
     path: ':shortUrlPath',
-    redirectTo: 'redirect/:shortUrlPath',
+    redirectTo: '#/redirect/:shortUrlPath',
     pathMatch: 'full',
   },
   { path: '**', component: NotFoundComponent },
