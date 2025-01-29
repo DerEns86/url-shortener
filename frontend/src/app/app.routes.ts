@@ -5,11 +5,11 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 export const routes: Routes = [
   { path: '', component: MainComponent },
-  { path: 'redirect/:shortUrlPath', component: RedirectComponent },
-  {
-    path: ':shortUrlPath',
-    redirectTo: 'redirect/:shortUrlPath',
-    pathMatch: 'full',
-  },
+  { path: 'r/:shortUrlPath', component: RedirectComponent },
+  // {
+  //   path: ':shortUrlPath',
+  //   redirectTo: 'redirect/:shortUrlPath',
+  //   pathMatch: 'full',
+  // },
   { path: '**', component: NotFoundComponent },
 ];
