@@ -8,7 +8,7 @@ RUN npm install
 
 # Copy the frontend source code and build it
 COPY frontend/ ./
-RUN npm run build --configuration="production" --base-href /app/
+RUN npm run build --configuration="production" --base-href="/app/"
 
 # Stage 2: Prepare backend with frontend build
 FROM maven:3.9.9-eclipse-temurin-23-alpine AS backend-build
