@@ -21,6 +21,7 @@ export class MainComponent implements OnInit {
   public urls: UrlInterface[] = [];
   // private HOSTER: string = 'https://ens.dev';
   private HOSTER: string = environment.BASE_URL;
+  private URL_SUFFIX: string = environment.URL_SUFFIX;
 
   submitForm = this.fb.group({
     sourceUrl: [
@@ -52,7 +53,10 @@ export class MainComponent implements OnInit {
       this.submitForm.value.sourceUrl !== null &&
       this.submitForm.value.sourceUrl !== undefined
     ) {
-      this.urlService.saveUrl(this.submitForm.value.sourceUrl, this.HOSTER);
+      this.urlService.saveUrl(
+        this.submitForm.value.sourceUrl,
+        this.HOSTER + this.URL_SUFFIX
+      );
 
       this.submitForm.setValue({
         sourceUrl: '',
