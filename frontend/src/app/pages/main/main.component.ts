@@ -2,13 +2,13 @@ import { Component, effect, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UrlInterface } from '../../interfaces/url.interface';
 import { UrlService } from '../../services/url.service';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, RouterModule],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
 })
