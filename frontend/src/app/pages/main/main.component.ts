@@ -4,6 +4,7 @@ import { UrlInterface } from '../../interfaces/url.interface';
 import { UrlService } from '../../services/url.service';
 import { RouterLink, RouterModule } from '@angular/router';
 import { environment } from '../../../environments/environment';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-main',
@@ -18,10 +19,14 @@ export class MainComponent implements OnInit {
   public showToast: boolean = false;
 
   public urlService: UrlService = inject(UrlService);
+  public storageService: StorageService = inject(StorageService);
+
   public urls: UrlInterface[] = [];
   // private HOSTER: string = 'https://ens.dev';
   private HOSTER: string = environment.BASE_URL;
   private URL_SUFFIX: string = environment.URL_SUFFIX;
+
+  user: string = '';
 
   submitForm = this.fb.group({
     sourceUrl: [
@@ -35,7 +40,10 @@ export class MainComponent implements OnInit {
   });
 
   constructor() {
-    this.urlService.fetchUrl();
+    this.user = this.storageService.getUserId();
+    effect(() => {
+      this.user = this.storageService.userSignal();
+    });
     effect(() => {
       this.urls = this.urlService.urls();
     });
@@ -46,7 +54,11 @@ export class MainComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.user !== '') {
+      this.urlService.fetchUrlByUser(this.user);
+    }
+  }
 
   onSubmit() {
     if (

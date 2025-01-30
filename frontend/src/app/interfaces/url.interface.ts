@@ -1,5 +1,6 @@
 export interface UrlInterface {
   originalUrl: string;
+  userId: string;
   shortUrl: string;
   host: string;
   shortUrlPath: string;
