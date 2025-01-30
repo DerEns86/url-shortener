@@ -37,4 +37,8 @@ public class UrlService {
         return url.getOriginalUrl();
     }
 
+    public List<Url> getAllUrlsByUserId(String userId) {
+        return urlRepository.findAllByUserId(userId).orElse(null);
+    }
+
 }

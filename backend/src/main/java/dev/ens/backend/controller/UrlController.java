@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 
+
 @RestController
 @RequestMapping("api/url")
 @RequiredArgsConstructor
@@ -56,5 +57,10 @@ public class UrlController {
         return ResponseEntity.ok(originalUrl);
     }
     
-
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Url>> getAllUrlsByUserId(@PathVariable String userId){
+        List<Url> urls = urlService.getAllUrlsByUserId(userId);
+        return ResponseEntity.ok(urls);
+    }
+    
 }
